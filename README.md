@@ -1,2 +1,2 @@
 # RaspberryPiDummyGPIO
-Tkinter project
+Tkinter project to simulate Raspberry Pi IO pinning

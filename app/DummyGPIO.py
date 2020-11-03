@@ -15,6 +15,7 @@ class DummyGPIO():
 
         self.inputs = []
         self.outputs = []
+        self.labels = {}
 
         self.rowInput = 0
         self.columnInput = 0
@@ -39,19 +40,29 @@ class DummyGPIO():
         print(f"setup: pin {pin}, {typeInOut}, {pull_up_down}")
 
         if typeInOut == self.IN:
-            self.addOutput(DummyInput(pin))
+            self.addInput(DummyInput(pin))
         elif typeInOut == self.OUT:
-            self.addInput(DummyOutput(pin))
+            self.addOutput(DummyOutput(pin))
         else:
             raise ValueError("type not known")
 
 
     def output(self, pin, output):
-        print(f"output pin number {pin} {output}")
+        # print(f"output pin number {pin} {output}")
+
+        for index in range(len(self.outputs)):
+            if self.outputs[index].pin == pin:
+                self.outputs[index].state = output
+
+        self.updateOutputs()
 
 
     def input(self, pin):
-        print(f"input pin number {pin}")
+        # print(f"input pin number {pin}")
+
+        for input in self.inputs:
+            if input.pin == pin:
+                return input.state
 
 
     def setTopLevel(self):
@@ -80,6 +91,8 @@ class DummyGPIO():
 
         btn = Button(self.frameInput, text=input.pin, padx=10, pady=10)
         btn.grid(row=self.rowInput, column=self.columnInput, padx=10, pady=10)
+        btn.bind("<ButtonPress-1>", lambda x : self.btnToggle(input.pin))
+        btn.bind("<ButtonRelease-1>", lambda x : self.btnToggle(input.pin))
 
         self.rowInput += 1
 
@@ -90,7 +103,34 @@ class DummyGPIO():
         lbl = Label(self.frameOutput, text=output.pin, padx=10, pady=10)
         lbl.grid(row=self.rowOutput, column=self.columnOutput, padx=10, pady=10)
 
+        self.labels[output.pin] = lbl
+
         self.rowOutput += 1
+
+
+    def btnToggle(self, pin):
+        print(f"push/release btn {pin}")
+
+        for index in range(len(self.inputs)):
+            if self.inputs[index].pin == pin:
+                self.inputs[index].state = not self.inputs[index].state
+
+        ## Only for debugging
+        # for input in self.inputs:
+        #     print(input)
+
+
+    def updateOutputs(self):
+
+        for output in self.outputs:
+            lbl = self.labels.get(output.pin)
+            
+            if output.state:
+                lbl['bg'] = 'red'
+            else:
+                lbl['bg'] = 'green'
+
+
 
 
 class DummyOutput():
@@ -105,3 +145,7 @@ class DummyInput():
     def __init__(self, pin):
         self.pin = pin
         self.state = False
+
+
+    def __str__(self):
+        return f"{self.pin}, {self.state}"

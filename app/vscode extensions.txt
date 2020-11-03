@@ -1,2 +1,6 @@
 vscode-icons
 plantuml
+
+toggle minimap
+ctrl + shift + p
+View: toggle minimap

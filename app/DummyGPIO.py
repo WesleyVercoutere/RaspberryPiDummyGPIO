@@ -7,8 +7,8 @@ class DummyGPIO():
 
         self.tkinterApp = tkinterApp
         self.BCM = "bcm"
-        self.OUT= "out"
-        self.IN = "in"
+        self.OUT= "output"
+        self.IN = "input"
         self.HIGH = "high"
         self.LOW = "low"
         self.PUD_DOWN = "Pull down"
@@ -36,13 +36,14 @@ class DummyGPIO():
 
 
     def setup(self, pin, typeInOut, pull_up_down=""):
-        print(f"setup = {pin} {typeInOut} {pull_up_down}")
+        print(f"setup: pin {pin}, {typeInOut}, {pull_up_down}")
 
-        if typeInOut == "in":
+        if typeInOut == self.IN:
             self.addOutput(DummyInput(pin))
-
-        if typeInOut == "out":
+        elif typeInOut == self.OUT:
             self.addInput(DummyOutput(pin))
+        else:
+            raise ValueError("type not known")
 
 
     def output(self, pin, output):

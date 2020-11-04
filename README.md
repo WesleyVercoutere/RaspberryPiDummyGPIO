@@ -23,6 +23,10 @@ Implemented methods from RPi.GPIO:
 
 ### 2.1 Instantiate DummyGPIO object
 
+While instantiating the dummyGPIO class, you provide an argument (True or False).
+* True: The current project has an instance of Tk(). and runs the mainloop. The DummyGPIO object will add a Toplevel widget to the project.
+* False: The current project has no Tkinter frontend. The DummyGPIO object will instantiate a root and run the mainloop.
+
 ```python
 try:
     import RPi.GPIO as GPIO
@@ -31,12 +35,19 @@ except:
     GPIO = DummyGPIO(True)
 ```
 
-While instantiating the dummyGPIO class, you provide an argument (True or False).
-* True: The current project has an instance of Tk(). and runs the mainloop. The DummyGPIO object will add a Toplevel widget to the project.
-* False: The current project has no Tkinter frontend. The DummyGPIO object will instantiate a root and run the mainloop.
-
 
 ### 2.2 setwarnings
+
+If the current project has an instance of Tk() run the setwarnings method after the instantiation of tkinter.
+
+```python
+root = Tk()
+root.title("Test proggie dummy GPIO")
+root.geometry("800x400")
+
+GPIO.setwarnings(False)
+```
+
 
 ### 2.3 setup
 

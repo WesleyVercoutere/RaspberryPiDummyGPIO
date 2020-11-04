@@ -3,14 +3,17 @@ Tkinter project to simulate Raspberry Pi IO pinning
 
 
 ## 1. Version
-Va.b.c.d
-* a:
-* b:
-* c:
-* d:
+Vx.y.z
+* x: Major version - breaks the API
+* y: Minor version - Doesn't break the API
+* z: Patches - Bug fixes
 
-V0.0.0.1
+V0.1.1
 
-V0.0.0.0
+Development
+
+V0.1.0
+
+Development
 
 ## 2. Use dummyGPIO

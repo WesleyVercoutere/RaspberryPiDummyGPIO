@@ -13,23 +13,23 @@ class DummyGPIO():
         self.LOW = "low"
         self.PUD_DOWN = "Pull down"
 
-        self.inputs = []
-        self.outputs = []
-        self.labels = {}
+        self._inputs = []
+        self._outputs = []
+        self._labels = {}
 
-        self.rowInput = 0
-        self.columnInput = 0
-        self.rowOutput = 0
-        self.columnOutput = 0
+        self._rowInput = 0
+        self._columnInput = 0
+        self._rowOutput = 0
+        self._columnOutput = 0
 
 
     def setwarnings(self, warning):
         print(f"Set warnings -> {warning}\n")
 
         if self.tkinterApp:
-            self.setTopLevel()
+            self._setTopLevel()
         else:
-            self.setRoot()
+            self._setRoot()
 
 
     def setmode(self, mode):
@@ -40,9 +40,9 @@ class DummyGPIO():
         print(f"setup: pin {pin}, {typeInOut}, {pull_up_down}")
 
         if typeInOut == self.IN:
-            self.addInput(DummyInput(pin))
+            self._addInput(DummyInput(pin))
         elif typeInOut == self.OUT:
-            self.addOutput(DummyOutput(pin))
+            self._addOutput(DummyOutput(pin))
         else:
             raise ValueError("type not known")
 
@@ -50,33 +50,33 @@ class DummyGPIO():
     def output(self, pin, output):
         # print(f"output pin number {pin} {output}")
 
-        for index in range(len(self.outputs)):
-            if self.outputs[index].pin == pin:
-                self.outputs[index].state = output
+        for index in range(len(self._outputs)):
+            if self._outputs[index].pin == pin:
+                self._outputs[index].state = output
 
-        self.updateOutputs()
+        self.__updateOutputs()
 
 
     def input(self, pin):
         # print(f"input pin number {pin}")
 
-        for input in self.inputs:
+        for input in self._inputs:
             if input.pin == pin:
                 return input.state
 
 
-    def setTopLevel(self):
+    def _setTopLevel(self):
         self.dummyroot = Toplevel()
-        self.addFrames()
+        self._addFrames()
 
 
-    def setRoot(self):
+    def _setRoot(self):
         self.dummyroot = Tk()
-        self.addFrames()
+        self._addFrames()
         self.dummyroot.mainloop()
 
 
-    def addFrames(self):
+    def _addFrames(self):
         self.dummyroot.title("Raspberry Pi dummy GPIO")
 
         self.frameInput = LabelFrame(self.dummyroot, text="Inputs")
@@ -86,51 +86,49 @@ class DummyGPIO():
         self.frameOutput.grid(row=0, column=1, padx=10, pady=10)
 
 
-    def addInput(self, input):
-        self.inputs.append(input)
+    def _addInput(self, input):
+        self._inputs.append(input)
 
         btn = Button(self.frameInput, text=input.pin, padx=10, pady=10)
-        btn.grid(row=self.rowInput, column=self.columnInput, padx=10, pady=10)
-        btn.bind("<ButtonPress-1>", lambda x : self.btnToggle(input.pin))
-        btn.bind("<ButtonRelease-1>", lambda x : self.btnToggle(input.pin))
+        btn.grid(row=self._rowInput, column=self._columnInput, padx=10, pady=10)
+        btn.bind("<ButtonPress-1>", lambda x : self._btnToggle(input.pin))
+        btn.bind("<ButtonRelease-1>", lambda x : self._btnToggle(input.pin))
 
-        self.rowInput += 1
+        self._rowInput += 1
 
 
-    def addOutput(self, output):
-        self.outputs.append(output)
+    def _addOutput(self, output):
+        self._outputs.append(output)
 
         lbl = Label(self.frameOutput, text=output.pin, padx=10, pady=10)
-        lbl.grid(row=self.rowOutput, column=self.columnOutput, padx=10, pady=10)
+        lbl.grid(row=self._rowOutput, column=self._columnOutput, padx=10, pady=10)
 
-        self.labels[output.pin] = lbl
+        self._labels[output.pin] = lbl
 
-        self.rowOutput += 1
+        self._rowOutput += 1
 
 
-    def btnToggle(self, pin):
+    def _btnToggle(self, pin):
         print(f"push/release btn {pin}")
 
-        for index in range(len(self.inputs)):
-            if self.inputs[index].pin == pin:
-                self.inputs[index].state = not self.inputs[index].state
+        for index in range(len(self._inputs)):
+            if self._inputs[index].pin == pin:
+                self._inputs[index].state = not self._inputs[index].state
 
         ## Only for debugging
         # for input in self.inputs:
         #     print(input)
 
 
-    def updateOutputs(self):
+    def __updateOutputs(self):
 
-        for output in self.outputs:
-            lbl = self.labels.get(output.pin)
+        for output in self._outputs:
+            lbl = self._labels.get(output.pin)
             
             if output.state:
                 lbl['bg'] = 'red'
             else:
                 lbl['bg'] = 'green'
-
-
 
 
 class DummyOutput():
@@ -149,3 +147,4 @@ class DummyInput():
 
     def __str__(self):
         return f"{self.pin}, {self.state}"
+

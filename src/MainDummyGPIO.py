@@ -62,6 +62,8 @@ btnRed.place(x=10,y=60)
 btnYellow.place(x=10,y=110)
 btnGreen.place(x=10,y=160)
 
+print("run private method")
+GPIO.__updateOutputs()
 
 
 def loop():

@@ -1,3 +1,6 @@
+## Wesley Vercoutere
+## V0.1.0
+
 import threading
 import time
 from tkinter import *
@@ -5,7 +8,7 @@ from tkinter import *
 try:
     import RPi.GPIO as GPIO
 except:
-    from DummyGPIO import *
+    from dummygpio.DummyGPIO import *
     GPIO = DummyGPIO(True)
 
 

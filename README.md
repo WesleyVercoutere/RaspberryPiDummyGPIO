@@ -51,6 +51,12 @@ GPIO.setwarnings(False)
 
 ### 2.3 setup
 
+Setting up the pins.
+
 ### 2.4 output
 
+Set the output pin.
+
 ### 2.5 input
+
+Read the state of the input pin.

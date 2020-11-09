@@ -1,7 +1,7 @@
 import unittest
 from src.dummygpio.DummyGPIO import *
 
-class TestStringMethods(unittest.TestCase):
+class TestDummyGPIO(unittest.TestCase):
 
     def setUp(self):
         self.GPIO = DummyGPIO(False)
@@ -14,23 +14,27 @@ class TestStringMethods(unittest.TestCase):
         self.assertFalse(GPIO2.tkinterApp)
 
     def test_constants(self):
-        self.BCM = "bcm"
-        self.OUT= "output"
-        self.IN = "input"
-        self.HIGH = "high"
-        self.LOW = "low"
-        self.PUD_DOWN = "Pull down"
+        BCM = "bcm"
+        OUT= "output"
+        IN = "input"
+        HIGH = True
+        LOW = False
+        PUD_DOWN = ""
 
-        self.assertEqual(self.GPIO.BCM, self.BCM)
-        self.assertEqual(self.GPIO.OUT, self.OUT)
-        self.assertEqual(self.GPIO.IN, self.IN)
-        self.assertEqual(self.GPIO.HIGH, self.HIGH)
-        self.assertEqual(self.GPIO.LOW, self.LOW)
-        self.assertEqual(self.GPIO.PUD_DOWN, self.PUD_DOWN)
-
-
+        self.assertEqual(self.GPIO.BCM, BCM)
+        self.assertEqual(self.GPIO.OUT, OUT)
+        self.assertEqual(self.GPIO.IN, IN)
+        self.assertEqual(self.GPIO.HIGH, HIGH)
+        self.assertEqual(self.GPIO.LOW, LOW)
+        self.assertEqual(self.GPIO.PUD_DOWN, PUD_DOWN)
 
 
+
+    # test_setwarnings
+    # test_setmode
+    # test_setup
+    # test_output
+    # test_input
 
 
 

@@ -27,9 +27,9 @@ class DummyGPIO():
         print(f"Set warnings -> {warning}\n")
 
         if self.tkinterApp:
-            self._setTopLevel()
+            self.__setTopLevel()
         else:
-            self._setRoot()
+            self.__setRoot()
 
 
     def setmode(self, mode):
@@ -40,9 +40,9 @@ class DummyGPIO():
         print(f"setup: pin {pin}, {typeInOut}, {pull_up_down}")
 
         if typeInOut == self.IN:
-            self._addInput(DummyInput(pin))
+            self.__addInput(DummyInput(pin))
         elif typeInOut == self.OUT:
-            self._addOutput(DummyOutput(pin))
+            self.__addOutput(DummyOutput(pin))
         else:
             raise ValueError("type not known")
 
@@ -65,18 +65,18 @@ class DummyGPIO():
                 return input.state
 
 
-    def _setTopLevel(self):
+    def __setTopLevel(self):
         self.dummyroot = Toplevel()
-        self._addFrames()
+        self.__addFrames()
 
 
-    def _setRoot(self):
+    def __setRoot(self):
         self.dummyroot = Tk()
-        self._addFrames()
+        self.__addFrames()
         self.dummyroot.mainloop()
 
 
-    def _addFrames(self):
+    def __addFrames(self):
         self.dummyroot.title("Raspberry Pi dummy GPIO")
 
         self.frameInput = LabelFrame(self.dummyroot, text="Inputs")
@@ -86,18 +86,18 @@ class DummyGPIO():
         self.frameOutput.grid(row=0, column=1, padx=10, pady=10)
 
 
-    def _addInput(self, input):
+    def __addInput(self, input):
         self._inputs.append(input)
 
         btn = Button(self.frameInput, text=input.pin, padx=10, pady=10)
         btn.grid(row=self._rowInput, column=self._columnInput, padx=10, pady=10)
-        btn.bind("<ButtonPress-1>", lambda x : self._btnToggle(input.pin))
-        btn.bind("<ButtonRelease-1>", lambda x : self._btnToggle(input.pin))
+        btn.bind("<ButtonPress-1>", lambda x : self.__btnToggle(input.pin))
+        btn.bind("<ButtonRelease-1>", lambda x : self.__btnToggle(input.pin))
 
         self._rowInput += 1
 
 
-    def _addOutput(self, output):
+    def __addOutput(self, output):
         self._outputs.append(output)
 
         lbl = Label(self.frameOutput, text=output.pin, padx=10, pady=10)
@@ -108,7 +108,7 @@ class DummyGPIO():
         self._rowOutput += 1
 
 
-    def _btnToggle(self, pin):
+    def __btnToggle(self, pin):
         print(f"push/release btn {pin}")
 
         for index in range(len(self._inputs)):

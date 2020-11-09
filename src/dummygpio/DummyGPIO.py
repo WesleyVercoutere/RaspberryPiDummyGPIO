@@ -9,9 +9,10 @@ class DummyGPIO():
         self.BCM = "bcm"
         self.OUT= "output"
         self.IN = "input"
-        self.HIGH = "high"
-        self.LOW = "low"
-        self.PUD_DOWN = "Pull down"
+        self.HIGH = True
+        self.LOW = False
+        self.PUD_UP = "PUD_UP"
+        self.PUD_DOWN ="PUD_DOWN"
 
         self._inputs = []
         self._outputs = []
@@ -147,4 +148,3 @@ class DummyInput():
 
     def __str__(self):
         return f"{self.pin}, {self.state}"
-

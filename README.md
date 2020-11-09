@@ -8,6 +8,9 @@ Vx.y.z
 * y: Minor version - Doesn't break the API
 * z: Patches - Bug fixes
 
+V0.1.1 (Development)
+
+pull_up and pull_down added in setmode, update testing
 
 V0.1.0 (Development)
 

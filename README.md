@@ -51,6 +51,15 @@ GPIO.setwarnings(False)
 
 ### 2.3 setup
 
+Setting up the pins according to the RPi.GPIO library.
+
+
 ### 2.4 output
 
+Set the output pin according to the RPi.GPIO library.
+
+
 ### 2.5 input
+
+Read the state of the input pin according to the RPi.GPIO library.
+

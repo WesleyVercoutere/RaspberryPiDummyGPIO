@@ -4,3 +4,7 @@ plantuml
 toggle minimap
 ctrl + shift + p
 View: toggle minimap
+
+pip install coverage
+coverage run -m unittest discover
+coverage html

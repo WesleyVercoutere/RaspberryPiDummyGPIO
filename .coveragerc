@@ -2,3 +2,4 @@
 omit =
     # omit anything in a .local directory anywhere
     */__init__.py
+    */test_examples.py

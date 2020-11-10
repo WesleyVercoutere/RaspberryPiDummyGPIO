@@ -1,6 +1,6 @@
 import unittest
-from tkinter import *
-from src.dummygpio.DummyGPIO import *
+from tkinter import Tk
+from src.dummygpio.DummyGPIO import DummyGPIO
 
 class TestDummyGPIO(unittest.TestCase):
 

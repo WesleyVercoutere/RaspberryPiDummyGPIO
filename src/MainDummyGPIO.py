@@ -3,12 +3,12 @@
 
 import threading
 import time
-from tkinter import *
+from tkinter import Tk, Button
 
 try:
     import RPi.GPIO as GPIO
 except:
-    from dummygpio.DummyGPIO import *
+    from dummygpio.DummyGPIO import DummyGPIO
     GPIO = DummyGPIO(True)
 
 

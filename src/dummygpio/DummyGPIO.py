@@ -66,6 +66,10 @@ class DummyGPIO():
                 return input.state
 
 
+    def cleanup(self):
+        print('Cleanup')
+
+
     def __setTopLevel(self):
         self.dummyroot = Toplevel()
         self.__addFrames()

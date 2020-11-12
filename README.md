@@ -11,7 +11,9 @@ Vx.y.z
 
 V0.1.1 (Development)
 
-* pull_up and pull_down added in setmode, update tests
+* pull_up and pull_down added in setmode
+* output with True and False
+* update test
 
 
 V0.1.0 (Development)

@@ -41,7 +41,7 @@ class DummyGPIO():
         print(f"setup: pin {pin}, {typeInOut}, {pull_up_down}")
 
         if typeInOut == self.IN:
-            self.__addInput(DummyInput(pin))
+            self.__addInput(DummyInput(pin, pull_up_down))
         elif typeInOut == self.OUT:
             self.__addOutput(DummyOutput(pin))
         else:
@@ -141,9 +141,13 @@ class DummyOutput():
 
 class DummyInput():
 
-    def __init__(self, pin):
+    def __init__(self, pin, pull_up_down):
         self.pin = pin
-        self.state = False
+
+        if pull_up_down == 'PUD_UP':
+            self.state = True
+        else:
+            self.state = False    
 
 
     def __str__(self):

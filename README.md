@@ -9,6 +9,13 @@ Vx.y.z
 * z: Patches - Bug fixes
 
 
+V0.1.1 (Development)
+
+* pull_up and pull_down added in setmode
+* output with True and False
+* update test
+
+
 V0.1.0 (Development)
 
 Implemented methods from RPi.GPIO:

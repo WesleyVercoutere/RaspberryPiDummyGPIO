@@ -3,12 +3,12 @@
 
 import threading
 import time
-from tkinter import *
+from tkinter import Tk, Button, Label
 
 try:
     import RPi.GPIO as GPIO
 except:
-    from dummygpio.DummyGPIO import *
+    from dummygpio.DummyGPIO import DummyGPIO
     GPIO = DummyGPIO(True)
 
 
@@ -18,59 +18,51 @@ root.geometry("800x400")
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
+ 
+led1 = 1
+led2 = 2
+led3 = 3
 
-ledBlue = 19
-ledRed = 20
-ledYellow = 21
-ledGreen = 22
+button1 = 11
+button2 = 12
 
-button1 = 23
-button2 = 24
-button3 = 25
-button4 = 26
-
-leds = (ledBlue, ledRed, ledYellow, ledGreen)
-buttons = (button1, button2, button3, button4)
+leds = (led1, led2, led3)
+buttons = (button1, button2)
 
 for led in leds:
     GPIO.setup(led, GPIO.OUT)
 
-for btn in buttons:
-    GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(button1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(button2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+starTime = time.time()
+outputled3 = False
 
-toggle = False
-blink = False
+def toggleLed3():
+    global starTime
+    global outputled3
 
-def toggleLed():
-    global toggle
-    toggle = not toggle
-    GPIO.output(ledBlue, toggle)
+    currentTime = time.time()
 
-def blinkLed():
-    global blink
-    blink = not blink
-
-
-btnBlue = Button(root, text="Blue led", command=toggleLed)
-btnRed = Button(root, text="Red led", command=blinkLed)
-btnYellow = Button(root, text="Yellow led")
-btnGreen = Button(root, text="Green led")
-
-btnBlue.place(x=10,y=10)
-btnRed.place(x=10,y=60)
-btnYellow.place(x=10,y=110)
-btnGreen.place(x=10,y=160)
-
+    if currentTime > starTime + 1:
+        starTime = time.time()
+        outputled3 = not outputled3
 
 def loop():
+    global outputled3
     while True:
-        # for index in range(len(buttons)):
-        #     GPIO.output(leds[index], GPIO.input(buttons[index]))
-        
-        global blink
-        if blink:
-            GPIO.output(ledRed, toggle)
+        GPIO.output(led1, GPIO.input(button1))
+        GPIO.output(led2, GPIO.input(button2))
+        GPIO.output(led3, outputled3)
+
+        toggleLed3()
+
+
+label1 = Label(root, text="Button 1: pull down -> led 1")
+label1.grid(row=0, column=0)
+
+label2 = Label(root, text="Button 2: pull up -> led 2")
+label2.grid(row=1, column=0)
 
         
 threading.Thread(target=loop).start()

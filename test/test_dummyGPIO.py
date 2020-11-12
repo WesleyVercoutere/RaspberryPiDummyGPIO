@@ -1,10 +1,12 @@
 import unittest
-from src.dummygpio.DummyGPIO import *
+from tkinter import Tk
+from src.dummygpio.DummyGPIO import DummyGPIO
 
 class TestDummyGPIO(unittest.TestCase):
 
     def setUp(self):
-        self.GPIO = DummyGPIO(False)
+        pass
+
 
     def test_init(self):
         GPIO1 = DummyGPIO(True)
@@ -13,46 +15,58 @@ class TestDummyGPIO(unittest.TestCase):
         self.assertTrue(GPIO1.tkinterApp)
         self.assertFalse(GPIO2.tkinterApp)
 
+
     def test_constants(self):
+        self.GPIO = DummyGPIO(False)
+        
         BCM = "bcm"
         OUT= "output"
         IN = "input"
         HIGH = True
         LOW = False
-        PUD_DOWN = ""
+        PUD_UP = "PUD_UP"
+        PUD_DOWN ="PUD_DOWN"
 
         self.assertEqual(self.GPIO.BCM, BCM)
         self.assertEqual(self.GPIO.OUT, OUT)
         self.assertEqual(self.GPIO.IN, IN)
         self.assertEqual(self.GPIO.HIGH, HIGH)
         self.assertEqual(self.GPIO.LOW, LOW)
+        self.assertEqual(self.GPIO.PUD_UP, PUD_UP)
         self.assertEqual(self.GPIO.PUD_DOWN, PUD_DOWN)
 
 
+    def test_setwarnings1(self):
+        root = Tk()
+        GPIO = DummyGPIO(True)
+        GPIO.setwarnings(False)
+        guiType = str(GPIO.dummyroot)
+        root.destroy()
 
-    # test_setwarnings
-    # test_setmode
-    # test_setup
-    # test_output
-    # test_input
+        self.assertEqual(guiType, ".!toplevel")
 
 
+    # def test_setwarnings2(self):
+    #     GPIO2 = DummyGPIO(False)
+    #     GPIO2.setwarnings(False)
+    #     # guiType = GPIO2.dummyroot
+    #     GPIO2.root.destroy()
+    #     # print(guiType)
+    #     # self.assertEqual(guiType, ".!toplevel")
 
 
-    ## Test examples
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
+    def test_setmode(self):
+        #this method contains no logic in the simulation library
+        pass
 
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
 
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+    def test_setup(self):
+        pass
 
-if __name__ == '__main__':
-    unittest.main()
+
+    def test_output(self):
+        pass
+
+
+    def test_input(self):
+        pass

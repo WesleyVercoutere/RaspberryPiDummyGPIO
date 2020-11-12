@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Toplevel, LabelFrame, Button, Label
 
 class DummyGPIO():
 
@@ -9,9 +9,10 @@ class DummyGPIO():
         self.BCM = "bcm"
         self.OUT= "output"
         self.IN = "input"
-        self.HIGH = "high"
-        self.LOW = "low"
-        self.PUD_DOWN = "Pull down"
+        self.HIGH = True
+        self.LOW = False
+        self.PUD_UP = "PUD_UP"
+        self.PUD_DOWN ="PUD_DOWN"
 
         self._inputs = []
         self._outputs = []
@@ -40,7 +41,7 @@ class DummyGPIO():
         print(f"setup: pin {pin}, {typeInOut}, {pull_up_down}")
 
         if typeInOut == self.IN:
-            self.__addInput(DummyInput(pin))
+            self.__addInput(DummyInput(pin, pull_up_down))
         elif typeInOut == self.OUT:
             self.__addOutput(DummyOutput(pin))
         else:
@@ -140,11 +141,14 @@ class DummyOutput():
 
 class DummyInput():
 
-    def __init__(self, pin):
+    def __init__(self, pin, pull_up_down):
         self.pin = pin
-        self.state = False
+
+        if pull_up_down == 'PUD_UP':
+            self.state = True
+        else:
+            self.state = False    
 
 
     def __str__(self):
         return f"{self.pin}, {self.state}"
-

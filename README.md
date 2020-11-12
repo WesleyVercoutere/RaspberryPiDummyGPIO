@@ -8,6 +8,9 @@ Vx.y.z
 * y: Minor version - Doesn't break the API
 * z: Patches - Bug fixes
 
+V0.2.0 (Development)
+
+* add cleanup method
 
 V0.1.1 (Development)
 

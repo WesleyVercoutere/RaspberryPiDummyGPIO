@@ -1,5 +1,5 @@
 ## Wesley Vercoutere
-## V0.1.0
+## V1.0.0
 
 import threading
 import time

@@ -8,6 +8,11 @@ Vx.y.z
 * y: Minor version - Doesn't break the API
 * z: Patches - Bug fixes
 
+V1.0.0 (Development)
+
+* split code in multiple classes
+* complete RPi.GPIO api
+
 V0.2.0 (Development)
 
 * add cleanup method

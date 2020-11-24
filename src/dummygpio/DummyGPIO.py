@@ -2,8 +2,124 @@ from tkinter import Tk, Toplevel, LabelFrame, Button, Label
 
 class DummyGPIO():
 
-    def __init__(self, tkinterApp):
-        print("Project doesn't run on a Raspberry Pi.\nSimulation will start!\n")
+    def __init__(self, runMainLoop):
+        self.BCM = "bcm"
+        self.BOARD = "board"
+        self.OUT= "output"
+        self.IN = "input"
+        self.HIGH = True
+        self.LOW = False
+        self.PUD_UP = "PUD_UP"
+        self.PUD_DOWN ="PUD_DOWN"
+        self.FALLING = "falling"
+        self.RISING = "rising"
+        self.VERSION = "Dummy GPIO V1.0.0"
+
+
+    
+    def setwarnings(self, warning):
+        pass
+
+
+    def setmode(self, mode):
+        pass
+
+
+    def getmode(self):
+        pass
+
+
+    def setup(self, pin, typeInOut, pull_up_down="", initial=""):
+        # setup with arrays and tuples!!
+        '''
+        GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)
+        chan_list = [11,12]    # add as many channels as you want!
+            # you can tuples instead i.e.:
+            #   chan_list = (11,12)
+        GPIO.setup(chan_list, GPIO.OUT) 
+        '''
+        pass
+
+
+    def output(self, pin, output):
+        '''
+        chan_list = [11,12]                             # also works with tuples
+        GPIO.output(chan_list, GPIO.LOW)                # sets all to GPIO.LOW
+        GPIO.output(chan_list, (GPIO.HIGH, GPIO.LOW))   # sets first HIGH and second LOW
+        GPIO.output(12, not GPIO.input(12))
+        '''
+        pass
+
+
+    def input(self, pin):
+        pass
+
+
+    def cleanup(self):
+        '''
+        GPIO.cleanup(channel)
+        GPIO.cleanup( (channel1, channel2) )
+        GPIO.cleanup( [channel1, channel2] )
+        '''
+        pass
+
+
+    def wait_for_edge(self, pin, type, timeout=0):
+        pass
+
+
+    def add_event_detect(self, pin, type, callback="", bouncetime=0):
+        '''
+        callback returns channel
+        '''
+        pass
+
+
+    def add_event_callback(self, pin, my_callback="", bouncetime=0):
+        pass
+
+
+    def event_detected(self, pin):
+        '''
+        GPIO.add_event_detect(channel, GPIO.RISING)  # add rising edge detection on a channel
+        do_something()
+        if GPIO.event_detected(channel):
+            print('Button pressed')
+        '''
+        pass
+
+
+    def remove_event_detect(self, pin):
+        pass
+
+
+    def PWM(self, pin, frequency):
+        pass
+
+
+    def gpio_function(self, pin):
+        '''
+        gpio_function(channel)
+        Shows the function of a GPIO channel.
+        For example:
+
+        import RPi.GPIO as GPIO
+
+        GPIO.setmode(GPIO.BOARD)
+        func = GPIO.gpio_function(pin)
+        will return a value from:
+        GPIO.IN, GPIO.OUT, GPIO.SPI, GPIO.I2C, GPIO.HARD_PWM, GPIO.SERIAL, GPIO.UNKNOWN
+        '''
+        pass
+
+
+    
+
+
+
+'''
+
+        print("Project doesn't run on a Raspberry Pi.\nSimulation started!\n")
 
         self.tkinterApp = tkinterApp
         self.BCM = "bcm"
@@ -22,6 +138,11 @@ class DummyGPIO():
         self._columnInput = 0
         self._rowOutput = 0
         self._columnOutput = 0
+
+
+
+
+
 
 
     def setwarnings(self, warning):
@@ -156,3 +277,5 @@ class DummyInput():
 
     def __str__(self):
         return f"{self.pin}, {self.state}"
+
+'''

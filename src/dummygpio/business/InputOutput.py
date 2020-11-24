@@ -8,7 +8,6 @@ class InputOutput(ABC):
         self.channel = channel
         self.state = False
 
-    @abstractmethod
     def __str__(self):
         return f"pin {self.channel} = {self.state}"
     

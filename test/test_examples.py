@@ -1,5 +1,4 @@
 import unittest
-from src.dummygpio.DummyGPIO import *
 
 class TestExamples(unittest.TestCase):
 

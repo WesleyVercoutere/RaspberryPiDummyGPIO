@@ -3,26 +3,24 @@ from tkinter import Tk, Toplevel, LabelFrame, Button, Label
 class DummyGPIO():
 
     def __init__(self, runMainLoop):
-        self.BCM = "bcm"
-        self.BOARD = "board"
-        self.OUT= "output"
-        self.IN = "input"
-        self.HIGH = True
-        self.LOW = False
-        self.PUD_UP = "PUD_UP"
-        self.PUD_DOWN ="PUD_DOWN"
-        self.FALLING = "falling"
-        self.RISING = "rising"
-        self.VERSION = "Dummy GPIO V1.0.0"
+        print("Project doesn't run on a Raspberry Pi.\nSimulation started!\n")
 
+        self.__tkinterStarted = False
+        self.__runMainloop = runMainLoop
 
-    
+        self.__setConstants()
+        
+
+    ## RPi.GPIO api
+
     def setwarnings(self, warning):
-        pass
+        print(f"Set warnings -> {warning}\n")
+        self.__initFrontEnd()
 
 
     def setmode(self, mode):
-        pass
+        print(f"Set mode -> {mode}\n")
+        self.__initFrontEnd()
 
 
     def getmode(self):
@@ -113,13 +111,42 @@ class DummyGPIO():
         pass
 
 
+    ## Private methods
+
+    def __setConstants(self):
+        self.BCM = "bcm"
+        self.BOARD = "board"
+        self.OUT= "output"
+        self.IN = "input"
+        self.HIGH = True
+        self.LOW = False
+        self.PUD_UP = "PUD_UP"
+        self.PUD_DOWN ="PUD_DOWN"
+        self.FALLING = "falling"
+        self.RISING = "rising"
+        self.BOTH = "both"
+        self.VERSION = "Dummy GPIO V1.0.0"
+
+
+    def __initFrontEnd(self):
+        self.__tkinterStarted = True
+
+        if self.__runMainloop:
+            pass
+
+        else:
+            pass
+
+
+
+
     
 
 
 
 '''
 
-        print("Project doesn't run on a Raspberry Pi.\nSimulation started!\n")
+        
 
         self.tkinterApp = tkinterApp
         self.BCM = "bcm"
@@ -140,22 +167,6 @@ class DummyGPIO():
         self._columnOutput = 0
 
 
-
-
-
-
-
-    def setwarnings(self, warning):
-        print(f"Set warnings -> {warning}\n")
-
-        if self.tkinterApp:
-            self.__setTopLevel()
-        else:
-            self.__setRoot()
-
-
-    def setmode(self, mode):
-        print(f"Set mode -> {mode}\n")
 
 
     def setup(self, pin, typeInOut, pull_up_down=""):

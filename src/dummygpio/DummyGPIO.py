@@ -129,13 +129,15 @@ class DummyGPIO():
 
 
     def __initFrontEnd(self):
+        
+        if not self.__tkinterStarted:
+            if self.__runMainloop:
+                pass
+
+            else:
+                pass
+
         self.__tkinterStarted = True
-
-        if self.__runMainloop:
-            pass
-
-        else:
-            pass
 
 
 

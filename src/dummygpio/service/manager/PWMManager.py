@@ -1,4 +1,4 @@
-class PWM():
+class PWMManager():
     '''
     To create a PWM instance:
 

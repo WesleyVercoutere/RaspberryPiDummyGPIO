@@ -1,4 +1,5 @@
 from .container.Container import *
+from .service.dto.GeneralDataDto import *
 
 
 class DummyGPIO():
@@ -9,6 +10,7 @@ class DummyGPIO():
         self.__tkinterStarted = False
         
         self.__container = Container(runMainLoop)
+        self.__generalDataMgr = self.__container.generalDataMgr
         self.__GUI = self.__container.GUI
         self.__setConstants()
         
@@ -17,12 +19,22 @@ class DummyGPIO():
 
     def setwarnings(self, warning):
         print(f"Set warnings -> {warning}\n")
-        self.__initFrontEnd()
+
+        dto = GeneralDataDto()
+        dto.warnings = warning
+        self.__generalDataMgr.setWarning(dto)
+        
+        self.__GUI.run()
 
 
     def setmode(self, mode):
         print(f"Set mode -> {mode}\n")
-        self.__initFrontEnd()
+
+        dto = GeneralDataDto()
+        dto.mode = mode
+        self.__generalDataMgr.setMode(dto)
+
+        self.__GUI.run()
 
 
     def getmode(self):
@@ -128,13 +140,6 @@ class DummyGPIO():
         self.BOTH = "both"
         self.VERSION = "Dummy GPIO V1.0.0"
 
-
-    def __initFrontEnd(self):
-        
-        if not self.__tkinterStarted:
-            self.__GUI.run()
-
-        self.__tkinterStarted = True
 
 
 

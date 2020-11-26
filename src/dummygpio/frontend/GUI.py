@@ -6,6 +6,7 @@ class GUI:
     __root = None
     __frameInput = None
     __frameOutput = None
+    __GuiStarted = False
 
 
     def __init__(self, runMainLoop):
@@ -16,11 +17,14 @@ class GUI:
     
     def run(self):
 
-        if self.__runMainLoop:
-            self.__startMainLoop()
-        
-        else:
-            self.__startTopLevel()
+        if not self.__GuiStarted:
+            if self.__runMainLoop:
+                self.__startMainLoop()
+            
+            else:
+                self.__startTopLevel()
+
+        self.__GuiStarted = True
 
 
     def __startMainLoop(self):

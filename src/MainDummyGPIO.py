@@ -9,7 +9,7 @@ try:
     import RPi.GPIO as GPIO
 except:
     from dummygpio.DummyGPIO import DummyGPIO
-    GPIO = DummyGPIO(True)
+    GPIO = DummyGPIO(False)
 
 
 root = Tk()

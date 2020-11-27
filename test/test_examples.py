@@ -1,8 +1,10 @@
 import unittest
 
+
 class TestExamples(unittest.TestCase):
 
-    ## Test examples
+    # Test examples
+
     def test_upper(self):
         self.assertEqual('foo'.upper(), 'FOO')
 

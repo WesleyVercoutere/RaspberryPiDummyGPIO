@@ -1,14 +1,13 @@
-from ...business.GeneralData import GeneralData
-from ..dto.GeneralDataDto import GeneralDataDto
+from ..dto.DigitalInputDto import DigitalInputDto
+from ...business.DigitalInput import DigitalInput
 
-
-class GeneralDataMapper:
+class DigitalInputMapper:
 
     def __init__(self):
         pass
 
     def map_to_obj(self, dto):
-        if not isinstance(dto, GeneralDataDto):
+        if not isinstance(dto, DigitalInputDto):
             raise TypeError("Wrong dto type.")
 
         general_data = GeneralData()
@@ -19,7 +18,7 @@ class GeneralDataMapper:
         return general_data
 
     def map_to_dto(self, obj):
-        if not isinstance(obj, GeneralData):
+        if not isinstance(obj, DigitalInput):
             raise TypeError("Wrong object type")
 
         dto = GeneralDataDto()

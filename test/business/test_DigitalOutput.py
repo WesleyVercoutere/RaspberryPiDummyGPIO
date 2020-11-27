@@ -1,5 +1,6 @@
 import unittest
-from src.dummygpio.business.DigitalOutput import *
+
+from src.dummygpio.business.DigitalOutput import DigitalOutput
 
 
 class TestDigitalOutput(unittest.TestCase):

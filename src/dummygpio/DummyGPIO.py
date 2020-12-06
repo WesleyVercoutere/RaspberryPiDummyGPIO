@@ -37,7 +37,7 @@ class DummyGPIO:
     def getmode(self):
         pass
 
-    def setup(self, channel, type, pull_up_down="", initial=""):
+    def setup(self, channel, type, pull_up_down=None, initial=None):
         """
         GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)
         chan_list = [11,12]    # add as many channels as you want!
@@ -70,13 +70,13 @@ class DummyGPIO:
     def wait_for_edge(self, pin, type, timeout=0):
         pass
 
-    def add_event_detect(self, pin, type, callback="", bouncetime=0):
+    def add_event_detect(self, pin, type, callback=None, bouncetime=0):
         """
         callback returns channel
         """
         pass
 
-    def add_event_callback(self, pin, my_callback="", bouncetime=0):
+    def add_event_callback(self, pin, my_callback=None, bouncetime=0):
         pass
 
     def event_detected(self, pin):
